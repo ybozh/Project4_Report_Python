@@ -92,5 +92,3 @@ if __name__=="__main__":
     myapp = MyWin()
     myapp.show()
     sys.exit(app.exec_())
-
-)))
