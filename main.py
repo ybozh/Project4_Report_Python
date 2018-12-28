@@ -43,30 +43,39 @@ class MyWin(QtWidgets.QMainWindow):
     # Пока пустая функция которая выполняется
     # при нажатии на кнопку
     def myFunction(self):
-        date_of_report = self.ui.dateEdit_3.date().toPyDate().strftime('%d.%m.%Y')
-        code_of_report = self.ui.comboBox.currentText()
-        name_of_reporter = self.ui.comboBox_2.currentText()
-        date_of_start_bt = self.ui.dateEdit_4.date().toPyDate().strftime('%d.%m.%Y')
-        date_of_end_bt = self.ui.dateEdit_5.date().toPyDate().strftime('%d.%m.%Y')
 
-        name_of_payment = self.ui.lineEdit.text()
-        sum_of_payment = self.ui.doubleSpinBox_2.value()
-        date_of_payment = self.ui.dateEdit_6.date().toPyDate().strftime('%d.%m.%Y')
-        sum_hotel = self.ui.checkBox.isChecked()
-        sum_from_credit = self.ui.checkBox_2.isChecked()
+        if self.ui.comboBox.currentText() != "--All--" and self.ui.comboBox_2.currentText() != "--All--":
 
-        days_in_bt = self.delta_days_in_bt()
-        salary_per_day = self.ui.doubleSpinBox.value()
-        salary_per_bt = self.ui.label_16.text()
-        sum_total = sum_of_payment
-        sum_word = self.ui.lineEdit_2.text()
+            date_of_report = self.ui.dateEdit_3.date().toPyDate().strftime('%d.%m.%Y')
+            code_of_report = self.ui.comboBox.currentText()
+            name_of_reporter = self.ui.comboBox_2.currentText()
+            date_of_start_bt = self.ui.dateEdit_4.date().toPyDate().strftime('%d.%m.%Y')
+            date_of_end_bt = self.ui.dateEdit_5.date().toPyDate().strftime('%d.%m.%Y')
 
-        add_report_row_to_db.add_rep_row_to_db(date_of_report, code_of_report, name_of_reporter, date_of_start_bt, date_of_end_bt, sum_total, sum_word)
-        add_report_row_to_db.add_pay_row_to_db(days_in_bt, salary_per_day, salary_per_bt, name_of_payment, sum_of_payment, date_of_payment, sum_hotel, sum_from_credit)
+            name_of_payment = self.ui.lineEdit.text()
+            sum_of_payment = self.ui.doubleSpinBox_2.value()
+            date_of_payment = self.ui.dateEdit_6.date().toPyDate().strftime('%d.%m.%Y')
+            sum_hotel = self.ui.checkBox.isChecked()
+            sum_from_credit = self.ui.checkBox_2.isChecked()
 
-        w = QWidget()
-        w.move(600, 350)
-        msg = QMessageBox.information(w, "Message", "Report " + code_of_report + " is saved!")
+            days_in_bt = self.delta_days_in_bt()
+            salary_per_day = self.ui.doubleSpinBox.value()
+            salary_per_bt = self.ui.label_16.text()
+            sum_total = sum_of_payment
+            sum_word = self.ui.lineEdit_2.text()
+
+            add_report_row_to_db.add_rep_row_to_db(date_of_report, code_of_report, name_of_reporter, date_of_start_bt, date_of_end_bt, sum_total, sum_word)
+            add_report_row_to_db.add_pay_row_to_db(days_in_bt, salary_per_day, salary_per_bt, name_of_payment, sum_of_payment, date_of_payment, sum_hotel, sum_from_credit)
+
+            w = QWidget()
+            w.move(600, 350)
+            msg = QMessageBox.information(w, "Message", "Report " + code_of_report + " is saved!")
+
+        else:
+
+            w = QWidget()
+            w.move(600, 350)
+            msg1 = QMessageBox.information(w, "Message", "Error during filling!")
 
 
 
