@@ -61,14 +61,14 @@ class MyWin(QtWidgets.QMainWindow):
         sum_total = sum_of_payment
         sum_word = self.ui.lineEdit_2.text()
 
-        add_report_row_to_db.add_rep_row_to_db(date_of_report, code_of_report, name_of_reporter, date_of_start_bt, date_of_end_bt, sum_total, sum_word)
-        add_report_row_to_db.add_pay_row_to_db(days_in_bt, salary_per_day, salary_per_bt, name_of_payment, sum_of_payment, date_of_payment, sum_hotel, sum_from_credit)
+        add_report_row_to_db.add_rep_row_to_db(date_of_report, code_of_report, name_of_reporter, date_of_start_bt,
+                                               date_of_end_bt, sum_total, sum_word)
+        add_report_row_to_db.add_pay_row_to_db(days_in_bt, salary_per_day, salary_per_bt, name_of_payment,
+                                               sum_of_payment, date_of_payment, sum_hotel, sum_from_credit)
 
         w = QWidget()
         w.move(600, 350)
         msg = QMessageBox.information(w, "Message", "Report " + code_of_report + " is saved!")
-
-
 
     def salary_per_bt(self):
         salary_per_bt = float(self.delta_days_in_bt()) * self.ui.doubleSpinBox.value()
@@ -81,13 +81,15 @@ class MyWin(QtWidgets.QMainWindow):
         self.ui.label_17.setText(delta_days_int)
         return delta_days_int
 
+
 def strfdelta(tdelta, fmt):
     d = {"days": tdelta.days}
     d["hours"], rem = divmod(tdelta.seconds, 3600)
     d["minutes"], d["seconds"] = divmod(rem, 60)
     return fmt.format(**d)
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     myapp = MyWin()
     myapp.show()
